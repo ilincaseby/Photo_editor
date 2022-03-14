@@ -1,0 +1,82 @@
+//Copyright ILINCA SEBASTIAN-IONUT 311CA
+
+HW 3
+
+FIRST TASK(LOAD)
+	After the scan of the command we verify if the program has already a image,
+loaded, if the answer is yes we free the memory of the program charged with
+the old photo with a function called 'free_that', after that we open the
+file with 'rt' to read the magic word, width, height and max value
+now it depends on the magic word, the function will split into four
+cases (the matrix is color and text/grayscale and text/color and
+binary/grayscale and binary). Also I need to mention the need to use cast at
+color because I worked with a struct named rgb. The thing is that after I open
+a file in text mode I check if it is ascii or binnary. If it is ascii I don't
+need to close the file so I continue the way I started. If it is binary, well
+I memorise the cursor(Idk if this is the word in english) to that position,
+then when I reopen the file I move the cursor to the point which is memorised
+and move one more time +1 because at that point there is a '\n' which I need
+to pass.
+
+SECOND TASK(SELECT <...>)
+	When I load an image I memorise in two vectors the coords (x_c
+& y_c) which indicate me where is the working matrix, initially
+I have 0 for the 3rd element both on x and y and on the 4th I
+have the height, the width. The first two elements are for printing
+in the right order. Anyway the way my program is working is based on the fact
+that I do all settings, crop, filters based on these coordinates so I need to
+put them in the right order.
+
+THIRD TASK(SELECT ALL)
+	The working mecanhism is simple, 3rd element of both x and y are 0
+now and the 4th element is height, width. This happens of course after a
+few functions which verify if the selected area is all, from "SELECT ALL"
+or if I will work with the coordinates. Sorry I don't have many words about
+this one, it's a simple task.
+
+FOURTH TASK(ROTATE)
+	I will talk about color and grayscale at once because of their similarities
+in this task. I use properly just the 90 degrees rotate because if it's 180
+I apply rotate 90 twice, for the 270 degrees rotate I apply it twice and so on.
+When the matrix is not a square and it allows me to enter the function I am
+sure that it s the whole photo, so I make it a square, transpose it, and swap
+the columns. Also here I need to mention that after the transpose I swapped the
+x, y, height and width, after that I swapped the columns from 0 to the right
+elements swapped, because if I take the garbage when I transformed the photo
+into a square it would be a mess.
+
+FIFTH TASK(CROP)
+	The idea is simple, make a copy of the 'working matrix', free the main
+matrix, put the right new x, y, height and width. After that, the program alloc
+memory for the 'main' new matrix accordingly of the coordinates and copy the
+values from the 'buffer' matrix. After that, I set the new height and width
+and I put the right values of the new coordinates.
+
+SIXTH TASK(APPLY <...>)
+	Complete all the verifications to make sure that the image is color,
+is any image at all, the parameter is valid. After that I copy the values of
+rgb in the following: matrix r, matrix g, matrix b(mr, mg, mb). After that with
+two of for syntaxes I checked if the pixel can be modified and if it can be
+I start doing the calculus. One functions calculate all of the filters, but
+depending of what filter I have (accordingly with a number sent by parameter
+to decide what filter I need). After that I put in order values obtained in mr,
+mg and mb. I need to mention that the approximations will be made at the
+command SAVE.
+
+SEVENTH TASK(SAVE)
+	Depending if the save will be ascii or not, we edit the magic word.
+After that we print in the file magic word, the width, the height and the max
+value in ascii mode, then we'll decide accordingly with the magic word if we
+continue to write in text mode or binary. At the color image, I approximate
+and cast the int in an unsigned char, after that I print
+binary or text. This is because of the really strange approximations.
+This task and the apply tasks were the most difficult.(OH NO... I have one hour
+left...hope I'll make it in time)
+
+EIGHTH TASK(EXIT)
+	I use the same function for free the image loaded in the program,
+after that I free the strings and break the while. If the program doesn't have
+ any image loaded, it will not exit anything and show a message to inform you.
+Unfortunately I don't havemany words about EXIT, I hope it's okay.
+
+That's my homework, thanks for reading.:) <3
